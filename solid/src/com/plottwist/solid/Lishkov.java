@@ -1,8 +1,7 @@
 package com.plottwist.solid;
 
 /**
- * You should be able to substitute a subclass
- * for a base class. Always.
+ * You should ALWAYS be able to substitute a subclass for a base class.
  * If you violate it, it will result in incorrect code
  * through inheritance
  */
