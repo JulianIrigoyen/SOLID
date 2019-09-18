@@ -3,15 +3,12 @@ package com.plottwist.solid;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javafx.scene.input.DataFormat.URL;
-
 /**
  * Single Responsibility Principle -> A class should have one reason to change.
+ * Considers the concept of separation of concerns -> different classes handle different & independent tasks
  * If you end up with a lot of responsibilities,
  * you end up with a God object, the Antipattern.
  */

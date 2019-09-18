@@ -10,7 +10,9 @@ package com.plottwist.solid;
 class InterfaceSegregation {
 }
 
-//Allows clients to perform ops on Document
+class Document {
+}
+//Take an interface(ie Machine) which allows clients to perform ops on Document
 interface Machine {
     void print(Document doc);
 
@@ -18,26 +20,10 @@ interface Machine {
 
     void scan(Document doc);
 }
-
 /**
- * A solution is to split the Machine interface
+ * A client wants to create a multifunction printer,so it implements Machine.
+ * This can get really bad if client just wants OldFashionedPrinter
  */
-interface Printer {
-    void print(Document doc);
-}
-
-interface Scanner {
-    void scan(Document doc);
-}
-
-interface Faxer {
-    void fax(Document doc);
-}
-
-class Document {
-}
-
-//Client wants to create a multifunction printer. This can get really bad if client wants OldFashionedPrinter
 class MultiFunctionPrinter implements Machine {
     @Override
     public void print(Document doc) {
@@ -54,11 +40,10 @@ class MultiFunctionPrinter implements Machine {
         //
     }
 }
-
 /**
- * This is where the problem begines -> client has to implement ALL the methods
- * What should client do on fax and scanner methods?
- * If left empty, they CAN BE TRIED TO BE USED -> this is a problem, cause they dont do shit
+ * This is where the problem begins -> client has to implement ALL of the methods defined in the Machine interface
+ * What should client do on fax and scanner methods (which he don't need?)
+ * If left empty, developers CAN TRY TO USE THEM -> this is a problem, cause they don't do shit
  */
 class OldFashionedPrinter implements Machine {
     @Override
@@ -77,6 +62,20 @@ class OldFashionedPrinter implements Machine {
     public void scan(Document doc) {
 
     }
+}
+/**
+ * A solution is to split the Machine interface
+ */
+interface Printer {
+    void print(Document doc);
+}
+
+interface Scanner {
+    void scan(Document doc);
+}
+
+interface Faxer {
+    void fax(Document doc);
 }
 
 class JustAPrinter implements Printer {
@@ -97,7 +96,7 @@ class ScanAndFax implements Scanner, Faxer {
     }
 }
 /**
- * Another solution
+ * Another solution -> Create an interface that extends from to separate interfaces
  */
 interface Photocopier extends Printer, Scanner{
 }
